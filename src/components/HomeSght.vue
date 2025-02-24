@@ -6,10 +6,11 @@
       >
         <div style="display: flex; align-items: center;">
           <img src="/casa-logo.jpg" alt="Logo" style="margin-right: 10px; height: 40px;" /> 
-          <h1 class="header-title">Horizonte</h1>
+          <h1 class="header-title">SGHT</h1>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
 
+          
           <p class="header-greeting">Olá, {{ username }}!</p>
 
           <a-button 
@@ -29,23 +30,30 @@
         </a-breadcrumb>
         <div :style="{ background: '#fff', padding: '24px', minHeight: '790px' }">
 
+            <h1 style="text-align: center;">Sistema de Gerenciamento de Horas Trabalhadas</h1>
             <h2 style="text-align: center;">Bem-vindo!</h2>
-            <h1 style="text-align: center;">Selecione para qual sistema deseja acessar:</h1>
 
             <div class="tables-wrapper">
               <div 
                 class="table-container"
-                @click="navegarParaTabelaVistas"
+                @click="navegarParaTabelaSolicitacao"
               >
                 <img src="/worksheet.png" class="work-icon">
-                <p style="text-align: center;">Vistas Explodidas</p>
+                <p style="text-align: center;">Tabela de Solicitações</p>
               </div>
               <div 
                 class="table-hr-container"
-                @click="navegarParaSGHT"
+                @click="navegarParaTabelaHoras"
               >
                 <img src="/working-time.png" class="time-icon">
-                <p style="text-align: center;">SGHT</p>
+                <p style="text-align: center;">Tabela de Horas Válidas</p>
+              </div>
+              <div 
+                class="register-container"
+                @click="navegarParaCadastroUser"
+              >
+                <img src="/register.png" class="register-icon">
+                <p style="text-align: center;">Cadastro de Colaborador</p>
               </div>
             </div>
 
@@ -72,19 +80,38 @@
     import { Dayjs } from 'dayjs';
 
     const router = useRouter();
+    const store = useStore();
     const username = ref<string | null>(null);
     const currentYear = ref(new Date().getFullYear());
     const value = ref<Dayjs>();
-    const store = useStore();
+    //const novasSolicitacoes = computed(() => store.state.novasSolicitacoes || []);
 
-    const navegarParaTabelaVistas = () => {
-      router.push('/TelaDocumentos');
-    }
+    onMounted(() => {
+        username.value = localStorage.getItem('login');
+        store.dispatch('fetchNovasSolicitacoes');
+    });
 
-    const navegarParaSGHT = () => {
-      router.push('/TelaSght')
-    }
-    
+    // Atualiza as notificações a cada 60 segundos
+    setInterval(() => {
+        store.dispatch('fetchNovasSolicitacoes');
+    }, 60000);
+
+    const marcarTodasComoVistas = async () => {
+        await store.dispatch('marcarNotificacoesComoVistas');
+        message.success('Notificações marcadas como vistas.');
+    };
+
+
+    const onPopoverOpen = async (visible: boolean) => {
+        if (visible) {
+            await store.dispatch('marcarNotificacoesComoVistas');
+        }
+    };
+
+    const onPanelChange = (value: Dayjs, mode: string) => {
+      console.log(value, mode);
+    };
+
     const fazerLogout = () => {
       store.dispatch('logout');
 
@@ -94,6 +121,24 @@
           router.push('/');
       }, 2000);
     }
+
+    const navegarParaTabelaSolicitacao = () => {
+        router.push('/TelaSolicitacao');
+    };
+
+    const navegarParaTabelaHoras = () => {
+      router.push('/TelaHorasValidas');
+    }
+
+    const navegarParaCadastroUser = () => {
+      router.push('/CriaUsuario');
+    }
+
+    /*const isAdmin = computed(() => {
+      const role = localStorage.getItem('role');
+      console.log('Usuário carregado:', role);
+      return role === 'admin';
+    });*/
 </script>
   
 <style scoped>

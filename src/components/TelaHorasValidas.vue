@@ -2,13 +2,15 @@
     <a-layout :style="{ minHeight: '100vh', position: 'relative'}">
   
       <a-layout-header 
-        :style="{ position: 'fixed', zIndex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }"
+        :style="{ position: 'fixed', zIndex: 1000, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', top: 0}"
       >
         <div style="display: flex; align-items: center;">
           <img src="/casa-logo.jpg" alt="Logo" style="margin-right: 10px; height: 40px;" /> 
-          <h1 class="header-title">Horizonte</h1>
+          <h1 class="header-title">SGHT</h1>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
+
+          
 
           <p class="header-greeting">Olá, {{ username }}!</p>
 
@@ -29,31 +31,9 @@
         </a-breadcrumb>
         <div :style="{ background: '#fff', padding: '24px', minHeight: '790px' }">
 
-            <h2 style="text-align: center;">Bem-vindo!</h2>
-            <h1 style="text-align: center;">Selecione para qual sistema deseja acessar:</h1>
-
-            <div class="tables-wrapper">
-              <div 
-                class="table-container"
-                @click="navegarParaTabelaVistas"
-              >
-                <img src="/worksheet.png" class="work-icon">
-                <p style="text-align: center;">Vistas Explodidas</p>
-              </div>
-              <div 
-                class="table-hr-container"
-                @click="navegarParaSGHT"
-              >
-                <img src="/working-time.png" class="time-icon">
-                <p style="text-align: center;">SGHT</p>
-              </div>
-            </div>
-
-            <div class="calendar">
-              <div :style="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
-                <a-calendar v-model:value="value" :fullscreen="false" @panelChange="onPanelChange" />
-              </div>
-            </div>
+            <h1 style="text-align: center;">Tabela de Horas Válidas</h1>
+            <br/> <br/>
+            <TabelaHoras/>
 
         </div>
       </a-layout-content>
@@ -63,28 +43,48 @@
     </a-layout>
   </template>
   
-<script lang="ts" setup>
+  <script lang="ts" setup>
     import { useStore } from 'vuex';
     import { message } from 'ant-design-vue';
     import { useRouter } from 'vue-router';
     import { LogoutOutlined } from '@ant-design/icons-vue';
     import { computed, onMounted, ref } from 'vue';
-    import { Dayjs } from 'dayjs';
+    import TabelaHoras from './TabelaHoras.vue';
 
     const router = useRouter();
+    const store = useStore();
     const username = ref<string | null>(null);
     const currentYear = ref(new Date().getFullYear());
-    const value = ref<Dayjs>();
-    const store = useStore();
+    //const value = ref<Dayjs>();
+    //const novasSolicitacoes = computed(() => store.state.novasSolicitacoes || []);
+    //const formatDate = (date: string) => new Date(date).toLocaleString();
 
-    const navegarParaTabelaVistas = () => {
-      router.push('/TelaDocumentos');
-    }
+    onMounted(() => {
+        username.value = localStorage.getItem('login');
+        store.dispatch('fetchNovasSolicitacoes');
+    });
 
-    const navegarParaSGHT = () => {
-      router.push('/TelaSght')
-    }
-    
+    // Atualiza as notificações a cada 60 segundos
+    setInterval(() => {
+        store.dispatch('fetchNovasSolicitacoes');
+    }, 60000);
+
+    const marcarTodasComoVistas = async () => {
+        await store.dispatch('marcarNotificacoesComoVistas');
+        message.success('Notificações marcadas como vistas.');
+    };
+
+
+    /*const onPopoverOpen = async (visible: boolean) => {
+        if (visible) {
+            await store.dispatch('marcarNotificacoesComoVistas');
+        }
+    };*/
+
+    /*const onPanelChange = (value: Dayjs, mode: string) => {
+      console.log(value, mode);
+    };*/
+
     const fazerLogout = () => {
       store.dispatch('logout');
 
@@ -94,9 +94,15 @@
           router.push('/');
       }, 2000);
     }
-</script>
+
+    /*const isAdmin = computed(() => {
+      const role = localStorage.getItem('role');
+      console.log('Usuário carregado:', role);
+      return role === 'admin';
+    });*/
+  </script>
   
-<style scoped>
+  <style scoped>
 
     #components-layout-demo-fixed .logo {
       width: 120px;
@@ -210,6 +216,6 @@
 
     .bell-container{
       margin-right: 5px;
-      cursor: pointer;
     }
+
 </style>

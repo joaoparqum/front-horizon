@@ -33,18 +33,18 @@
         :pagination="{ pageSize: 6 }"
       >
         <template #bodyCell="{ column, record }">
-          <template v-if="column.key === 'nomeArquivo'">
-            <a @click="openDocumentByName(record.id)">
-              {{ record.nomeArquivo }}
+          <template v-if="column.key === 'nomeVista'">
+            <a @click="visualizarDocumento(record.id)">
+              {{ record.nomeVista }}
             </a>
           </template>
-          <template v-else-if="column.key === 'tipoArquivo'">
-            <a-tag :color="record.tipoArquivo === 'pdf' ? 'geekblue' : 'green'">
-              {{ record.tipoArquivo }}
+          <template v-else-if="column.key === 'tipoVista'">
+            <a-tag :color="record.tipoVista === 'pdf' ? 'geekblue' : 'green'">
+              {{ record.tipoVista }}
             </a-tag>
           </template>
-          <template v-else-if="column.key === 'tamanhoArquivo'">
-            <span>{{ (record.tamanhoArquivo / 1024).toFixed(2) }} KB</span>
+          <template v-else-if="column.key === 'tamanhoVista'">
+            <span>{{ (record.tamanhoVista / 1024).toFixed(2) }} KB</span>
           </template>
           <template v-else-if="column.key === 'action'">
             <a-button 
@@ -71,6 +71,11 @@
           </template>
         </template>
       </a-table>
+
+      <a-modal v-model:open="openVisualizerModal" title="Vista Explodida" @cancel="visualizerCancel">
+        <iframe v-if="documentUrl" :src="documentUrl" width="100%" height="600px"></iframe>
+        <p v-else>Carregando documento...</p>
+      </a-modal>
     </div>
 </template>
   
@@ -84,6 +89,8 @@
     const router = useRouter();
     const searchTerm = ref('');
     const store = useStore();
+    const openVisualizerModal = ref(false);
+    const documentUrl = ref("");
   
     const cadastrarUsuario = () => {
       setTimeout(() => {
@@ -95,21 +102,23 @@
       router.push('/AdicionarDocumento');
     };
   
-    /*const isAdmin = computed(() => {
+    const isAdmin = computed(() => {
       const role = localStorage.getItem('role');
       console.log('Usuário carregado:', role); // Verificar se o usuário está disponível
       return role === 'admin';
     });
   
-    const navegarParaAdicionarDocumento = () => {
-      router.push('/AdicionarDocumento');
-    };
   
     const data = computed(() => store.state.data);
   
     onMounted(() => {
       store.dispatch('fetchData');
     });
+
+    const visualizerCancel = () => {
+      openVisualizerModal.value = false;
+      documentUrl.value = ""; // Limpa o documento quando fechar o modal
+    };
   
     /*const downloadDocument = (DocumentCode: string, nomeArquivo: string) => {
       store.dispatch('searchDocumentByCode', { DocumentCode, nomeArquivo });
@@ -134,23 +143,21 @@
   
     const loading = ref<Record<string, boolean>>({});
   
-    const visualizarDocumento = async (documentId: string) => {
+    const visualizarDocumento = async (documentId: any) => {
       try {
-        // Define o estado de carregamento apenas para o botão clicado
         loading.value = { ...loading.value, [documentId]: true };
-  
-        await store.dispatch('fetchDocumentByCode', { DocumentCode: documentId });
-        const documentUrl = store.getters.documentUrl;
-  
-        if (documentUrl) {
-          window.open(documentUrl, '_blank');
+
+        await store.dispatch("fetchDocumentByCode", { DocumentCode: documentId });
+        documentUrl.value = store.getters.documentUrl;
+
+        if (documentUrl.value) {
+          openVisualizerModal.value = true; // Abre o modal com o documento carregado
         } else {
-          console.error('URL do documento não encontrado!');
+          console.error("URL do documento não encontrado!");
         }
       } catch (error) {
-        console.error('Erro ao visualizar o documento:', error);
+        console.error("Erro ao visualizar o documento:", error);
       } finally {
-        // Remove o estado de carregamento do botão
         loading.value = { ...loading.value, [documentId]: false };
       }
     };
@@ -191,20 +198,20 @@
       },
       {
         title: 'Nome do Arquivo',
-        dataIndex: 'nomeArquivo',
-        key: 'nomeArquivo',
+        dataIndex: 'nomeVista',
+        key: 'nomeVista',
         width: 200,
       },
       {
         title: 'Tipo do Arquivo',
-        dataIndex: 'tipoArquivo',
-        key: 'tipoArquivo',
+        dataIndex: 'tipoVista',
+        key: 'tipoVista',
         width: 150,
       },
       {
         title: 'Tamanho do Arquivo (KB)',
-        dataIndex: 'tamanhoArquivo',
-        key: 'tamanhoArquivo',
+        dataIndex: 'tamanhoVista',
+        key: 'tamanhoVista',
         width: 150,
         responsive: ['md'],
       },

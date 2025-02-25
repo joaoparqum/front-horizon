@@ -77,6 +77,10 @@
     const value = ref<Dayjs>();
     const store = useStore();
 
+    onMounted(() => {
+      username.value = localStorage.getItem('login');
+    })
+
     const navegarParaTabelaVistas = () => {
       router.push('/TelaDocumentos');
     }

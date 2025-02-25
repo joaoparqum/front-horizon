@@ -68,17 +68,13 @@
 
     message.loading({ content: 'Fazendo o login no sistema...' });
 
-    if (success && localStorage.getItem('role') === 'admin') {
+    if (success) {
       setTimeout(() => {
         router.push('/HomeScreen');
       }, 2000);
       console.log('Login realizado com sucesso!');
-    } else if(success && localStorage.getItem('role') === 'user') {
-      setTimeout(() => {
-        router.push('/TelaSolicitacao');
-      }, 2000);
-      console.log('Login realizado com sucesso!');
-    }
+    }  
+    
   };
   
   const onFinishFailed = (errorInfo: any) => {

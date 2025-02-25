@@ -158,10 +158,10 @@ const store = createStore({
     },
     async searchDocumentByName(
       { commit }: { commit: (mutation: string, payload?: any) => void }, 
-      nomeArquivo: string) 
+      nomeVista: string) 
     {
       try {
-        const response = await axios.get(`http://localhost:8080/horizonte/vistas/nomeArquivo/${nomeArquivo}`);
+        const response = await axios.get(`http://localhost:8080/horizonte/vistas/nomeVista/${nomeVista}`);
         commit('setData', response.data);
       } catch (error) {
         console.log("Erro ao buscar documento pelo nome!");

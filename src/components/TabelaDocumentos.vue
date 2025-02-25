@@ -166,10 +166,10 @@
       store.dispatch('deleteData', id);
     };
   
-    const onSearch = (nomeArquivo: string) => {
+    const onSearch = (nomeVista: string) => {
       if (searchTerm.value) {
         try {
-          store.dispatch('searchDocumentByName', nomeArquivo);
+          store.dispatch('searchDocumentByName', nomeVista);
         } catch (error) {
           message.error('Erro durante a busca! Digite o nome corretamente!');
         }

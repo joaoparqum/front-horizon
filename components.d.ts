@@ -53,5 +53,6 @@ declare module 'vue' {
     TelaHorasValidas: typeof import('./src/components/TelaHorasValidas.vue')['default']
     TelaSolicitacoes: typeof import('./src/components/TelaSolicitacoes.vue')['default']
     TelaSolicitacoesUsuario: typeof import('./src/components/TelaSolicitacoesUsuario.vue')['default']
+    TelaSolUser: typeof import('./src/components/TelaSolUser.vue')['default']
   }
 }

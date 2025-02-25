@@ -86,7 +86,11 @@
     }
 
     const navegarParaSGHT = () => {
-      router.push('/TelaSght')
+      if (localStorage.getItem('role') === 'admin'){
+        router.push('/TelaSght');
+      } else if( localStorage.getItem('role') === 'user') {
+        router.push('/TelaSolUser');
+      }
     }
     
     const fazerLogout = () => {

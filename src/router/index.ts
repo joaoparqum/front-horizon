@@ -7,6 +7,7 @@ import TelaCriarDocumento from '../components/TelaCriarDocumento.vue';
 import HomeSght from '../components/HomeSght.vue';
 import TelaHorasValidas from '../components/TelaHorasValidas.vue';
 import TelaSolicitacoes from '../components/TelaSolicitacoes.vue';
+import TelaSolUser from '../components/TelaSolUser.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -16,7 +17,8 @@ const routes = [
     { path: '/AdicionarDocumento', component: TelaCriarDocumento},
     { path: '/TelaSght', component: HomeSght},
     { path: '/TelaHorasValidas', component: TelaHorasValidas},
-    { path: '/TelaSolicitacao', component: TelaSolicitacoes}
+    { path: '/TelaSolicitacao', component: TelaSolicitacoes},
+    { path: '/TelaSolUser', component: TelaSolUser}
 ];
 
 const router = createRouter({

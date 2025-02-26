@@ -41,9 +41,27 @@
         </a-form-item>
   
         <br><br>
-        <a-form-item>
-          <a-button type="primary" html-type="submit">Cadastrar</a-button>
-        </a-form-item>
+        <a-row :gutter="[16, 16]">
+          <a-col :span="8">
+            <a-form-item>
+              <a-button type="primary" html-type="submit" class="register-button">
+                <FileAddOutlined />
+                Cadastrar
+              </a-button>
+            </a-form-item>
+          </a-col>  
+
+          <a-col :span="8">
+            <a-button 
+              type="primary" 
+              @click="navegarParaHomescreen"
+              style="margin-left: 10px;"
+            >
+              <ArrowLeftOutlined />
+              Voltar para tela inicial
+            </a-button>
+          </a-col>  
+        </a-row>  
       </a-form>
     </div>
   </template>
@@ -52,8 +70,11 @@
     import { reactive, ref } from 'vue';
     import { useStore } from 'vuex';
     import { message, type SelectProps } from 'ant-design-vue';
+    import { useRouter } from 'vue-router';
+    import { ArrowLeftOutlined, FileAddOutlined } from '@ant-design/icons-vue';
   
     const store = useStore();
+    const router = useRouter();
   
     interface FormState {
       username: string;
@@ -103,6 +124,11 @@
   
     const filterOption = (input: string, option: any) => {
       return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+    };
+
+    const navegarParaHomescreen = () => {
+      message.loading({ content: 'Voltando...' });
+      router.push('/HomeScreen');
     };
   </script>
     

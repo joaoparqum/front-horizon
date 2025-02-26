@@ -112,7 +112,7 @@
 
     // Funções auxiliares
     const navegarParaHomescreen = () => {
-        router.push('/HomeScreen');
+        router.push('/TelaSght');
     };
 
     // Funções para alterar status

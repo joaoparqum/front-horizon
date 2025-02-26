@@ -32,7 +32,7 @@
           </template>
 
           <template v-if="column.key === 'comprovante'">
-            <a @click="openDocumentByName(record.comprovante.id)">{{ record.comprovante.nomeArquivo }}</a>
+            <a @click="openDocumentByName(record.comprovante.id)">{{ record.comprovante.nomeComprovante }}</a>
           </template>
 
           <template v-else-if="column.key === 'status'">

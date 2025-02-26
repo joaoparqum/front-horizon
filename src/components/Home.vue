@@ -18,7 +18,7 @@
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
         <div class="content-wrapper">
             <div class="horizon-container">
-                <img src="/horizonte-logo.png" alt="Logo" style="height: 100px;" />    
+                <img src="/logo-2.png" alt="Logo" style="height: 100px;" />    
             </div>
           <h1 class="welcome-title" style="margin-top: 10px;">Seja bem-vindo ao HORIZONTE!</h1>
           <div class="login-container">

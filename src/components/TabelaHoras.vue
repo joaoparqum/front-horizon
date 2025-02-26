@@ -106,11 +106,11 @@ const formData = ref({
 });
 
 const navegarParaAdicionarHoraValida = () => {
-  router.push('/CriaHoraValida');
+  router.push('/CriaHora');
 };
 
 const navegarParaHomescreen = () => {
-      router.push('/HomeScreen');
+  router.push('/TelaSght');
 };
 
 onMounted(() => {

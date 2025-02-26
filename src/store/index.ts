@@ -11,6 +11,9 @@ interface State {
   login: string | null;
   document: any | null;
   url: string | null;
+  novasSolicitacoes: any[];
+  solicitacoes: any[];
+  horas: any[];
 }
 
 const store = createStore({
@@ -23,6 +26,7 @@ const store = createStore({
       login: null,
       isLoggedIn: false,
       document: null,
+      novasSolicitacoes: [],
     };
   },
   mutations: {
@@ -52,7 +56,13 @@ const store = createStore({
     },
     clearDocument(state: State) {
       state.document = null;
-    }
+    },
+    setHorasData(state: State, horas: any[]) {
+      state.horas = horas;
+    },
+    setNovasSolicitacoes(state: any, solicitacoes: any[]) {
+      state.novasSolicitacoes = solicitacoes;
+    },
   },
   actions: {
     async login(
@@ -230,11 +240,331 @@ const store = createStore({
           throw new Error(error.response.data.message);
         }
       }
-    },    
+    }, 
+    async fetchSolicitacoes({ commit }: { state: State; commit: (mutation: string, payload?: any) => void }) {
+      try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get('http://localhost:8080/horizonte/solicitacoes', {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          });
+          //console.log('Dados recebidos:', response.data);
+          commit('setData', response.data);
+      } catch (error) {
+          console.error('Erro ao buscar dados:', error);
+      }
+    },
+    async fetchSolicitacoesByUser({ commit }: { state: State; commit: (mutation: string, payload?: any) => void }) {
+      try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get('http://localhost:8080/horizonte/solicitacoes/user', {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          });
+          //console.log('Dados recebidos:', response.data);
+          commit('setData', response.data);
+      } catch (error) {
+          console.error('Erro ao buscar dados:', error);
+      }
+    }, 
+    async deleteSolicitacao(
+      { dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, 
+      id: string) 
+    {
+      try {
+          const token = localStorage.getItem('token');
+          await axios.delete(`http://localhost:8080/horizonte/solicitacoes/${id}`, {
+              headers: {
+                  'Authorization': `Bearer ${token}`,
+              },
+          });
+          dispatch('fetchSolicitacoesByUser');
+      } catch (error) {
+          console.error('Erro ao excluir o documento:', error);
+      }
+    },
+    async createSolicitacao(
+      { dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> },
+      payload: { data: string; motivo: string; horasSolicitadas: number; comprovante: File }
+    ) {
+      try {
+        const token = localStorage.getItem('token'); 
+    
+        const formData = new FormData();
+        formData.append('data', payload.data);
+        formData.append('motivo', payload.motivo);
+        formData.append('horasSolicitadas', payload.horasSolicitadas.toString());
+        formData.append('comprovante', payload.comprovante); // Adiciona o arquivo
+    
+        // Verifica se o arquivo foi realmente adicionado ao FormData
+        console.log(formData.get('comprovante'));  
+
+        // Envia a solicitação com FormData
+        await axios.post(`http://localhost:8080/horizonte/solicitacoes`, formData,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`, // Inclui o token no cabeçalho
+              'Content-Type': 'multipart/form-data', // Define o tipo correto
+            },
+          }
+        );
+    
+        console.log('Solicitação criada com sucesso!');
+        await dispatch('fetchSolicitacoesByUser'); // Atualiza a lista de solicitações
+      } catch (error) {
+        console.error('Erro ao criar solicitação: ', error);
+      }
+    },
+    async createHoraValida( { dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, horas: {nomeColaborador: string, filial: string, junhoJulho: number, agosto: number, setembroOutubro: number, novembro: number, dezembro: number, janeiro: number, fevereiro: number, marco: number,
+      abril: number, maio: number, junho: number    
+    }) {
+          try{
+              const token = localStorage.getItem('token');
+              await axios.post(`http://localhost:8080/horizonte/horas`, 
+              {
+                  nomeColaborador: horas.nomeColaborador,
+                  filial: horas.filial,
+                  junhoJulho: horas.junhoJulho,
+                  agosto: horas.agosto,
+                  setembroOutubro: horas.setembroOutubro,
+                  novembro: horas.novembro,
+                  dezembro: horas.dezembro,
+                  janeiro: horas.janeiro,
+                  fevereiro: horas.fevereiro,
+                  marco: horas.marco,
+                  abril: horas.abril,
+                  maio: horas.maio,
+                  junho: horas.junho
+              },
+              {
+                  headers: {
+                      'Authorization': `Bearer ${token}`
+                  }
+              });
+              dispatch('fetchHoras');
+          } catch (error) {
+              console.log('Erro ao criar hora valida: ', error);
+          }
+    }, 
+    async fetchHoras ({ commit }: { state: State; commit: (mutation: string, payload?: any) => void }) {
+      try{
+          const token = localStorage.getItem('token');
+          const response = await axios.get(`http://localhost:8080/horizonte/horas`, {
+              headers: {
+                  'Authorization': `Bearer ${token}`
+              }
+          })
+          commit('setHorasData', response.data);
+      } catch ( error ){
+          console.log('Erro ao mostrar horas válidas: ', error);
+      }
+    },
+    async deleteHoras (
+      { dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, 
+      id: string) 
+    {
+        try{
+            const token = localStorage.getItem('token');
+            await axios.delete(`http://localhost:8080/horizonte/horas/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            dispatch('fetchHoras');
+        } catch ( error ){
+            console.log('Erro ao deletar hora válida: ', error);
+        }
+    },
+    async searchHorasByName(
+      { commit }: { commit: (mutation: string, payload?: any) => void }, 
+      nomeColaborador: string) 
+    {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`http://localhost:8080/horizonte/horas/nome/${nomeColaborador}`, {
+          headers: {
+              'Authorization': `Bearer ${token}`
+          }
+        });
+        commit('setHorasData', response.data);
+      } catch (error) {
+        console.log("Erro ao buscar documento pelo nome!");
+      }
+    },
+    async searchSolicitacoesByName(
+      { commit }: { commit: (mutation: string, payload?: any) => void }, 
+      login: string) 
+    {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`http://localhost:8080/horizonte/solicitacoes/nome/${login}`, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+        });
+        commit('setData', response.data);
+      } catch (error) {
+        console.log("Erro ao buscar documento pelo nome!");
+      }
+    },
+    async searchSolicitacoesByMotivo(
+      { commit }: { commit: (mutation: string, payload?: any) => void }, 
+      motivo: string) 
+    {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`http://localhost:8080/horizonte/solicitacoes/motivo/${motivo}`, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+        });
+        commit('setData', response.data);
+      } catch (error) {
+        console.log("Erro ao buscar documento pelo nome!");
+      }
+    },
+    async changeStatus(
+      { dispatch }: { state: State; dispatch: (action: string, payload?: any) => Promise<any> },
+      { id, status }: { id: string; status: string }
+    ) {
+      try {
+          const token = localStorage.getItem('token');
+          await axios.patch(
+              `http://localhost:8080/horizonte/solicitacoes/${id}/status`, null, 
+              {
+                  headers: {
+                      'Authorization': `Bearer ${token}`,
+                  },
+                  params: {
+                      status,
+                  },
+              }
+          );
+          dispatch('fetchSolicitacoes');
+      } catch (error) {
+          console.error('Erro ao mudar status da solicitação:', error);
+      }
+    },
+    async fetchNovasSolicitacoes({ commit }: any) {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:8080/horizonte/solicitacoes/nao-vistas', {
+          headers: { 'Authorization': `Bearer ${token}` },
+      });
+      commit('setNovasSolicitacoes', response.data);
+    },
+    async marcarNotificacoesComoVistas({ dispatch }: any) {
+      try {
+          const token = localStorage.getItem('token');
+          await axios.put('http://localhost:8080/horizonte/solicitacoes/marcar-vistas', {}, {
+              headers: { 'Authorization': `Bearer ${token}` },
+          });
+          // Atualiza a lista de notificações após marcar como vistas
+          dispatch('fetchNovasSolicitacoes');
+      } catch (error) {
+          console.error('Erro ao marcar notificações como vistas:', error);
+      }
+    },
+    async updateSolicitacao({ dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, 
+        payload: any) {
+            try {
+                const token = localStorage.getItem('token');
+                if(!token) {
+                    throw new Error('Token não encontrado. Faça login novamente.');
+                }
+
+                await axios.patch(`http://localhost:8080/horizonte/solicitacoes/${payload.id}`, payload.updatedData, {
+                    headers: { Authorization: `Bearer ${token}`},
+                });
+                dispatch('fetchSolicitacoesByUser');
+                console.log("Solicitação atualizada com sucesso!");
+            } catch (error) {
+                console.error('Erro ao atualizar a solicitação!', error);
+            }
+    },
+    async updateHoras({ dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, 
+        payload: any) 
+    {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    throw new Error('Token não encontrado. Faça login novamente.');
+                }
+            
+                await axios.patch(`http://localhost:8080/horizonte/horas/${payload.id}`, payload.updatedData,{
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                
+                dispatch('fetchHoras');
+                console.log('Hora Válida atualizada com sucesso!');
+            } catch (error) {
+                console.error('Erro ao atualizar a hora válida:', error);
+                throw error; 
+            }
+      },
+      async fetchSolicitacaoById({}: { dispatch: (action: string, payload?: any) => Promise<any> }, 
+        payload: any) {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get(`http://localhost:8080/horizonte/solicitacoes/${payload.id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+                return response.data;
+            } catch (error) {
+                console.log("Erro ao encontrar solicitação:", error);
+            }
+      },
+      async fetchHorasById({}: { dispatch: (action: string, payload?: any) => Promise<any> }, 
+        payload: any) {
+            try {
+            
+              const token = localStorage.getItem('token');
+          
+              if (!token) {
+                throw new Error('Token não encontrado. Faça login novamente.');
+              }
+          
+              const response = await axios.get(`http://localhost:8080/horizonte/horas/${payload.id}`, {
+                headers: { Authorization: `Bearer ${token}` }  // Corrigido "Authorizarion" para "Authorization"
+              });
+          
+              return response.data;
+            } catch (error) {
+              console.log('Erro ao encontrar hora válida: ', error);
+              throw error; // Re-lançando o erro para ser tratado no componente
+            }
+      },
+      async fetchComprovanteByCode(
+        { commit }: { commit: (mutation: string, payload?: any) => void },
+        { DocumentCode }: { DocumentCode: string})
+      {
+        try {
+          const token = localStorage.getItem('token');  
+          const response = await axios.get(`http://localhost:8080/horizonte/comprovantes/view/${DocumentCode}`, {
+            responseType: 'blob', 
+            headers: { 
+                Authorization: `Bearer ${token}`
+            }
+          });
+      
+          const blob = new Blob([response.data], { type: response.headers['content-type'] || '' });
+          const documentUrl = window.URL.createObjectURL(blob);
+  
+          commit('setDocument', documentUrl);
+          return documentUrl;
+        } catch (error) {
+          console.error('Erro ao carregar o conteúdo do documento:', error);
+          commit('setDocument', null);
+          throw new Error('Erro ao carregar o conteúdo do documento!');
+        }
+      },    
   },
   getters: {
     flightData: (state: State) => state.data,
     documentUrl: (state: State) => state.document,
+    novasSolicitacoes: (state: State) => state.novasSolicitacoes,
+    token: (state: State) => state.token
   },
 });
 

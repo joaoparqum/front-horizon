@@ -32,7 +32,7 @@
           </template>
 
           <template v-if="column.key === 'comprovante'">
-            <a @click="openDocumentByName(record.comprovante.id)">{{ record.comprovante.nomeComprovante }}</a>
+            <a @click="visualizarDocumento(record.comprovante.id)">{{ record.comprovante.nomeComprovante }}</a>
           </template>
 
           <template v-else-if="column.key === 'status'">
@@ -73,6 +73,11 @@
         <FormEditaSolicitacao :formData="formData" />
       </a-modal>
 
+      <a-modal v-model:open="openVisualizerModal" title="Comprovante" @cancel="visualizerCancel">
+        <iframe v-if="documentUrl" :src="documentUrl" style="width: 100px; height: 300px;"></iframe>
+        <p v-else>Carregando comprovante...</p>
+      </a-modal>
+
     </div>
 </template>
   
@@ -84,6 +89,8 @@
     import { DeleteOutlined, FileAddOutlined, EditOutlined } from '@ant-design/icons-vue';
     import FormEditaSolicitacao from './FormEditaSolicitacao.vue';
     
+    const openVisualizerModal = ref(false);
+    const documentUrl = ref("");
     const editModalOpen = ref(false);
     const formData = ref({
       id: '',
@@ -106,20 +113,30 @@
         router.push('/CriaSolicitacao');
     };
 
-    const openDocumentByName = async (documentId: string) => {
-      message.loading({ content: 'Carregando documento...' });
-      await store.dispatch('fetchDocumentByCode', { DocumentCode: documentId });
-        const documentUrl = store.getters.documentUrl;
+    const visualizerCancel = () => {
+      openVisualizerModal.value = false;
+      documentUrl.value = ""; // Limpa o documento quando fechar o modal
+    };
 
-        if (documentUrl) {
-          window.open(documentUrl, '_blank');
+    const loading = ref<Record<string, boolean>>({});
+
+    const visualizarDocumento = async (documentId: any) => {
+      try {
+        loading.value = { ...loading.value, [documentId]: true };
+
+        await store.dispatch("fetchComprovanteByCode", { DocumentCode: documentId });
+        documentUrl.value = store.getters.documentUrl;
+
+        if (documentUrl.value) {
+          openVisualizerModal.value = true; // Abre o modal com o documento carregado
         } else {
-          console.error('URL do documento não encontrado!');
-          message.error('Erro na abertura do documento!');
+          console.error("URL do documento não encontrado!");
         }
-      setTimeout(() => {
-        message.success({ content: 'Documento carregado!', duration: 2 });
-      }, 1000);
+      } catch (error) {
+        console.error("Erro ao visualizar o documento:", error);
+      } finally {
+        loading.value = { ...loading.value, [documentId]: false };
+      }
     };
     
     const onSearch = async (motivo: string) => {

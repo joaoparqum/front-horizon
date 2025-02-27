@@ -31,7 +31,7 @@
           </template>
 
           <template v-if="column.key === 'comprovante'">
-            <a @click="openDocumentByName(record.comprovante.id)">
+            <a @click="visualizarDocumento(record.comprovante.id)">
               {{ record.comprovante.nomeComprovante }}
             </a>
           </template>
@@ -63,6 +63,12 @@
           </template>
         </template>
       </a-table>
+
+      <a-modal v-model:open="openVisualizerModal" title="Comprovante" @cancel="visualizerCancel" style="width: 900px;">
+        <iframe v-if="documentUrl" :src="documentUrl" width="100%" height="600px"></iframe>
+        <p v-else>Carregando comprovante...</p>
+      </a-modal>
+
     </div>
 </template>
   
@@ -80,6 +86,9 @@
     // Campos de pesquisa e dados
     const searchTerm = ref('');
     const data = computed<Solicitacao[]>(() => store.state.data);
+
+    const openVisualizerModal = ref(false);
+    const documentUrl = ref("");
     
     interface Solicitacao {
       id: number;
@@ -88,26 +97,36 @@
       motivo: string;
       comprovante: {
         id: string;
-        nomeArquivo: string;
+        nomeComprovante: string;
       };
       horasSolicitadas: number;
       status: string;
     }
 
-    const openDocumentByName = async (documentId: string) => {
-      message.loading({ content: 'Carregando documento...' });
-      await store.dispatch('fetchDocumentByCode', { DocumentCode: documentId });
-        const documentUrl = store.getters.documentUrl;
+    const visualizerCancel = () => {
+      openVisualizerModal.value = false;
+      documentUrl.value = ""; // Limpa o documento quando fechar o modal
+    };
 
-        if (documentUrl) {
-          window.open(documentUrl, '_blank');
+    const loading = ref<Record<string, boolean>>({});
+
+    const visualizarDocumento = async (documentId: any) => {
+      try {
+        loading.value = { ...loading.value, [documentId]: true };
+
+        await store.dispatch("fetchComprovanteByCode", { DocumentCode: documentId });
+        documentUrl.value = store.getters.documentUrl;
+
+        if (documentUrl.value) {
+          openVisualizerModal.value = true; // Abre o modal com o documento carregado
         } else {
-          console.error('URL do documento não encontrado!');
-          message.error('Erro na abertura do documento!');
+          console.error("URL do documento não encontrado!");
         }
-      setTimeout(() => {
-        message.success({ content: 'Documento carregado!', duration: 2 });
-      }, 1000);
+      } catch (error) {
+        console.error("Erro ao visualizar o documento:", error);
+      } finally {
+        loading.value = { ...loading.value, [documentId]: false };
+      }
     };
 
     // Funções auxiliares

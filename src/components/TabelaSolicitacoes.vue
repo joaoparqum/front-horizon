@@ -32,7 +32,7 @@
 
           <template v-if="column.key === 'comprovante'">
             <a @click="openDocumentByName(record.comprovante.id)">
-              {{ record.comprovante.nomeArquivo }}
+              {{ record.comprovante.nomeComprovante }}
             </a>
           </template>
 
@@ -79,7 +79,7 @@
     
     // Campos de pesquisa e dados
     const searchTerm = ref('');
-    const data = computed<Solicitacao[]>(() => store.state.solicitacoes);
+    const data = computed<Solicitacao[]>(() => store.state.data);
     
     interface Solicitacao {
       id: number;

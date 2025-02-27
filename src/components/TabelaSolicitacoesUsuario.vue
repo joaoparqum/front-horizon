@@ -99,7 +99,7 @@
     
     // Campos de pesquisa e dados
     const searchTerm = ref('');
-    //const data = computed(() => store.state.solicitacoes);
+    const data = computed(() => store.state.data);
     
     // Funções auxiliares
     const navegarParaAdicionarSolicitacao = () => {

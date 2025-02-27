@@ -166,10 +166,7 @@ const store = createStore({
         console.error('Erro ao buscar documento por código:', error);
       }
     },
-    async searchDocumentByName(
-      { commit }: { commit: (mutation: string, payload?: any) => void }, 
-      nomeVista: string) 
-    {
+    async searchDocumentByName({ commit }: { commit: (mutation: string, payload?: any) => void }, nomeVista: string) {
       try {
         const response = await axios.get(`http://localhost:8080/horizonte/vistas/nomeVista/${nomeVista}`);
         commit('setData', response.data);
@@ -269,10 +266,8 @@ const store = createStore({
           console.error('Erro ao buscar dados:', error);
       }
     }, 
-    async deleteSolicitacao(
-      { dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, 
-      id: string) 
-    {
+    async deleteSolicitacao({ dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, 
+    id: string) {
       try {
           const token = localStorage.getItem('token');
           await axios.delete(`http://localhost:8080/horizonte/solicitacoes/${id}`, {

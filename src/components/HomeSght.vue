@@ -50,11 +50,15 @@
       <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
         <a-breadcrumb :style="{ margin: '16px 0' }">
         </a-breadcrumb>
-        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px' }">
+        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', position: 'relative' }">
 
             <h1 style="text-align: center;">Sistema de Gerenciamento de Horas Trabalhadas</h1>
             <h2 style="text-align: center;">Bem-vindo!</h2>
 
+            <a-button type="primary" @click="voltarParaHome" style="position: absolute; top: 0; left: 0; margin-left: 15px; margin-top: 15px;">
+              <ArrowLeftOutlined />
+              <span>Voltar para a Home</span>
+            </a-button>
             <div class="tables-wrapper">
               <div 
                 class="table-container"
@@ -97,7 +101,7 @@
     import { useStore } from 'vuex';
     import { message } from 'ant-design-vue';
     import { useRouter } from 'vue-router';
-    import { LogoutOutlined } from '@ant-design/icons-vue';
+    import { ArrowLeftOutlined, LogoutOutlined, SwapLeftOutlined } from '@ant-design/icons-vue';
     import { computed, onMounted, ref } from 'vue';
     import { Dayjs } from 'dayjs';
 
@@ -154,6 +158,10 @@
 
     const navegarParaCadastroUser = () => {
       router.push('/CriaUsuario');
+    }
+
+    const voltarParaHome = () => {
+      router.push('/HomeScreen')
     }
 
     /*const isAdmin = computed(() => {
@@ -229,6 +237,7 @@
       align-items: center; /* Centraliza os itens verticalmente */
       gap: 50px; /* Espaço entre os quadrados */
       height: 100%; /* Ocupa toda a altura do contêiner */
+      margin-top: 10px
     }
 
     .table-container, .table-hr-container, .register-container {

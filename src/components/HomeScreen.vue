@@ -30,7 +30,7 @@
         <div :style="{ background: '#fff', padding: '24px', minHeight: '790px' }">
 
             <h2 style="text-align: center;">Bem-vindo!</h2>
-            <h1 style="text-align: center;">Selecione para qual sistema deseja acessar:</h1>
+            <h1 style="text-align: center;">Selecione o sistema deseja acessar:</h1>
 
             <div class="tables-wrapper">
               <div 

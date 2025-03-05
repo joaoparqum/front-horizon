@@ -8,6 +8,7 @@
         <FileAddOutlined />
         Adicionar documento
       </a-button>
+      <a-divider type="vertical" />
       <a-button 
         v-if="isAdmin"
         type="primary" 
@@ -16,6 +17,14 @@
       >
         <UserAddOutlined />
         <span class="button-text">Registrar usuário</span>
+      </a-button>
+      <a-divider type="vertical" />
+      <a-button 
+        type="primary" 
+        @click="voltarParaHome"
+      >
+          <ArrowLeftOutlined />
+          <span>Voltar para a Home</span>
       </a-button>
       <br /><br />
       <a-input-search
@@ -84,7 +93,7 @@
     import { computed, onMounted, ref, watch } from 'vue';
     import { useRouter } from 'vue-router';
     import { message } from 'ant-design-vue';
-    import { DeleteOutlined, FileAddOutlined, UserAddOutlined } from '@ant-design/icons-vue';
+    import { ArrowLeftOutlined, DeleteOutlined, FileAddOutlined, UserAddOutlined } from '@ant-design/icons-vue';
   
     const router = useRouter();
     const searchTerm = ref('');
@@ -101,6 +110,10 @@
     const navegarParaAdicionarDocumento = () => {
       router.push('/AdicionarDocumento');
     };
+
+    const voltarParaHome = () => {
+      router.push('/HomeScreen')
+    }
   
     const isAdmin = computed(() => {
       const role = localStorage.getItem('role');
@@ -239,10 +252,6 @@
       .register-button {
         margin-top: 5px;
       }
-    }
-  
-    .register-button {
-      margin-left: 5px;
     }
   
     .visualizer-button {

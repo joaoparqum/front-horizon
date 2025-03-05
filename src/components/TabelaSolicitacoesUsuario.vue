@@ -73,8 +73,8 @@
         <FormEditaSolicitacao :formData="formData" />
       </a-modal>
 
-      <a-modal v-model:open="openVisualizerModal" title="Comprovante" @cancel="visualizerCancel">
-        <iframe v-if="documentUrl" :src="documentUrl" style="width: 100px; height: 300px;"></iframe>
+      <a-modal v-model:open="openVisualizerModal" title="Comprovante" @cancel="visualizerCancel" style="width: 900px;">
+        <iframe v-if="documentUrl" :src="documentUrl" width="100%" height="600px"></iframe>
         <p v-else>Carregando comprovante...</p>
       </a-modal>
 

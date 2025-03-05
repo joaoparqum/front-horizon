@@ -10,9 +10,11 @@ import TelaSolicitacoes from '../components/TelaSolicitacoes.vue';
 import TelaSolUser from '../components/TelaSolUser.vue';
 import TelaCriaHoraValida from '../components/TelaCriaHoraValida.vue';
 import TelaCriaSolicitacao from '../components/TelaCriaSolicitacao.vue';
+import Intro from '../components/Intro.vue';
 
 const routes = [
     { path: '/', component: Home },
+    { path: '/Intro', component: Intro},
     { path: '/HomeScreen', component: HomeScreen },
     { path: '/TelaDocumentos', component: TelaDocumentos},
     { path: '/CriaUsuario', component: TelaCriaUsuario}, 

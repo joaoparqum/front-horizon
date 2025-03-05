@@ -25,7 +25,7 @@
         <a-breadcrumb :style="{ margin: '16px 0' }">
         </a-breadcrumb>
         <div :style="{ background: '#fff', padding: '24px', minHeight: '790px' }">
-          <h1 style="text-align: center;">Tabela de Vistas Explodidas</h1>
+          <h1 style="text-align: center; margin-bottom: 20px;">Tabela de Vistas Explodidas</h1>
           <TabelaDocumentos/>
         </div>
       </a-layout-content>

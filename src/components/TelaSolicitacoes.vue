@@ -53,7 +53,7 @@
     const store = useStore();
     const username = ref<string | null>(null);
     const currentYear = ref(new Date().getFullYear());
-    const isAdmin = computed(() => localStorage.getItem('role') === 'admin');
+    const isAdmin = computed(() => localStorage.getItem('role') === 'admin_sght');
     const isUser = computed(() => localStorage.getItem('role') === 'user');
 
     onMounted(() => {

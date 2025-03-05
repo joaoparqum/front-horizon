@@ -89,7 +89,6 @@
     });
   
     const options = ref<SelectProps['options']>([
-      { value: 'ADMIN_SGHT', label: 'Administrador do SGHT' },
       { value: 'ADMIN_VISTAS', label: 'Administrador das Vistas'},
       { value: 'USER', label: 'Usuário' },
     ]);
@@ -132,6 +131,3 @@
       router.push('/HomeScreen');
     };
   </script>
-    
-    
-    

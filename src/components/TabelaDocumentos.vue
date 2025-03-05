@@ -103,7 +103,7 @@
   
     const cadastrarUsuario = () => {
       setTimeout(() => {
-        router.push('/CriaUsuario')
+        router.push('/CriaUserVistas')
       }, 2000);
     }
 
@@ -118,7 +118,7 @@
     const isAdmin = computed(() => {
       const role = localStorage.getItem('role');
       console.log('Usuário carregado:', role); // Verificar se o usuário está disponível
-      return role === 'admin';
+      return role === 'admin_vistas' || role === 'admin';
     });
   
   

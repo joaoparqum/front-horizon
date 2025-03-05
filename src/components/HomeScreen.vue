@@ -86,8 +86,10 @@
     }
 
     const navegarParaSGHT = () => {
-      if (localStorage.getItem('role') === 'admin'){
-        router.push('/TelaSght');
+      if (localStorage.getItem('role') === 'admin_sght' || localStorage.getItem('role') === 'admin'){
+        router.push('/TelaSght'); 
+      } else if ( localStorage.getItem('role') === 'admin_vistas') {
+        window.alert("Você é ADM DAS VISTAS - Não tem permissão para acessar o SGHT!!");
       } else if( localStorage.getItem('role') === 'user') {
         router.push('/TelaSolUser');
       }

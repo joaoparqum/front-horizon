@@ -11,6 +11,7 @@ import TelaSolUser from '../components/TelaSolUser.vue';
 import TelaCriaHoraValida from '../components/TelaCriaHoraValida.vue';
 import TelaCriaSolicitacao from '../components/TelaCriaSolicitacao.vue';
 import Intro from '../components/Intro.vue';
+import TelaCriaUsusarioVistas from '../components/TelaCriaUsusarioVistas.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -18,6 +19,7 @@ const routes = [
     { path: '/HomeScreen', component: HomeScreen },
     { path: '/TelaDocumentos', component: TelaDocumentos},
     { path: '/CriaUsuario', component: TelaCriaUsuario}, 
+    { path: '/CriaUserVistas', component: TelaCriaUsusarioVistas},
     { path: '/AdicionarDocumento', component: TelaCriarDocumento},
     { path: '/TelaSght', component: HomeSght},
     { path: '/TelaHorasValidas', component: TelaHorasValidas},

@@ -9,7 +9,7 @@
     <a-layout-header 
       :style="{ position: 'fixed', zIndex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }"
     >
-      <img src="/casa-logo.jpg" alt="Logo" style="margin-right: 10px; height: 40px;" />
+      <img src="/casa-logo-Photoroom.png" alt="Logo" style="margin-right: 10px; height: 50px;" />
       <h1 style="color: white; margin: 0;">Horizonte</h1>
     </a-layout-header>
 
@@ -44,9 +44,12 @@
         </div>
     </a-layout-content>
 
-    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '35px 0' }">
-      <h2 style="color: yellow; margin: 0;">Casa do Construtor | Setor de TI - Irecê ©{{ currentYear }}</h2>
-    </a-layout-footer>
+    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '20px 0' }">
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="/footer-image.png" alt="" style="height: 60px;">
+          <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>
+        </div>
+      </a-layout-footer>
   </a-layout>
   
 </template>

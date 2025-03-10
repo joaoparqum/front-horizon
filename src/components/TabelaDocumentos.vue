@@ -8,7 +8,7 @@
         <FileAddOutlined />
         Adicionar documento
       </a-button>
-      <a-divider type="vertical" />
+      <a-divider type="vertical" v-if="isAdmin" />
       <a-button 
         v-if="isAdmin"
         type="primary" 
@@ -18,7 +18,7 @@
         <UserAddOutlined />
         <span class="button-text">Registrar usuário</span>
       </a-button>
-      <a-divider type="vertical" />
+      <a-divider type="vertical" v-if="isAdmin"/>
       <a-button 
         type="primary" 
         @click="voltarParaHome"

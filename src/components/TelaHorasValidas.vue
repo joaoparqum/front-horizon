@@ -46,10 +46,10 @@
         </div>
       </a-layout-header>
 
-      <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
+      <a-layout-content :style="{ padding: '0 50px', marginTop: '64px', background: '#212f3c' }">
         <a-breadcrumb :style="{ margin: '16px 0' }">
         </a-breadcrumb>
-        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px' }">
+        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', borderRadius: '15px' }">
 
             <h1 style="text-align: center;">Tabela de Horas Válidas</h1>
             <br/> <br/>
@@ -57,7 +57,7 @@
 
         </div>
       </a-layout-content>
-      <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '20px 0' }">
+      <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
           <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>

@@ -14,7 +14,7 @@
       <h1 style="color: white; margin: 0;">Horizonte</h1>
     </a-layout-header>
 
-    <a-layout-content :style="{ display:'flex', justifyContent:'center', alignItems: 'center', marginTop: '5px' }">
+    <a-layout-content :style="{ display:'flex', justifyContent:'center', alignItems: 'center', marginTop: '60px', background: '#1c2833'}">
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
         <div class="content-wrapper">
             <div class="horizon-container">
@@ -27,7 +27,7 @@
         </div>
     </a-layout-content>
 
-    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '20px 0' }">
+    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
       <div style="display: flex; align-items: center; justify-content: center;">
         <img src="/footer-image.png" alt="" style="height: 60px;">
         <h2 style="color: yellow; margin: 0;">| Irecê ©{{ currentYear }}</h2>
@@ -43,11 +43,12 @@
   /* Estilo padrão */
   .content-wrapper {
     background: #fff;
-    padding: 60px;
+    padding: 40px;
     margin: 0 auto;
     max-width: 800px;
     min-height: 460px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
   }
 
   .welcome-title {

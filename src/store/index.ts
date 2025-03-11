@@ -312,8 +312,8 @@ const store = createStore({
         console.error('Erro ao criar solicitação: ', error);
       }
     },
-    async createHoraValida( { dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, horas: {nomeColaborador: string, filial: string, junhoJulho: number, agosto: number, setembroOutubro: number, novembro: number, dezembro: number, janeiro: number, fevereiro: number, marco: number,
-      abril: number, maio: number, junho: number    
+    async createHoraValida( { dispatch }: { dispatch: (action: string, payload?: any) => Promise<any> }, horas: {nomeColaborador: string, filial: string, ano24_junhoJulho: number, ano24_agosto: number, ano24_setembroOutubro: number, ano24_novembro: number, ano24_dezembro: number, ano25_janeiro: number, ano25_fevereiro: number, ano25_marco: number, ano25_abril: number, ano25_maio: number, ano25_junho: number, ano25_julho: number, ano25_agosto: number, ano25_setembro: number, ano25_outubro: number,
+    ano25_novembro: number, ano25_dezembro: number    
     }) {
           try{
               const token = localStorage.getItem('token');
@@ -321,17 +321,23 @@ const store = createStore({
               {
                   nomeColaborador: horas.nomeColaborador,
                   filial: horas.filial,
-                  junhoJulho: horas.junhoJulho,
-                  agosto: horas.agosto,
-                  setembroOutubro: horas.setembroOutubro,
-                  novembro: horas.novembro,
-                  dezembro: horas.dezembro,
-                  janeiro: horas.janeiro,
-                  fevereiro: horas.fevereiro,
-                  marco: horas.marco,
-                  abril: horas.abril,
-                  maio: horas.maio,
-                  junho: horas.junho
+                  ano24_junhoJulho: horas.ano24_junhoJulho,
+                  ano24_agosto: horas.ano24_agosto,
+                  ano24_setembroOutubro: horas.ano24_setembroOutubro,
+                  ano24_novembro: horas.ano24_novembro,
+                  ano24_dezembro: horas.ano24_dezembro,
+                  ano25_janeiro: horas.ano25_janeiro,
+                  ano25_fevereiro: horas.ano25_fevereiro,
+                  ano25_marco: horas.ano25_marco,
+                  ano25_abril: horas.ano25_abril,
+                  ano25_maio: horas.ano25_maio,
+                  ano25_junho: horas.ano25_junho,
+                  ano25_julho: horas.ano25_julho,
+                  ano25_agosto: horas.ano25_agosto,
+                  ano25_setembro: horas.ano25_setembro,
+                  ano25_outubro: horas.ano25_outubro,
+                  ano25_novembro: horas.ano25_novembro,
+                  ano25_dezembro: horas.ano25_dezembro
               },
               {
                   headers: {

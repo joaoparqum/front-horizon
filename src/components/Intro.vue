@@ -1,6 +1,13 @@
 <script setup lang="ts">
     import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
     const currentYear = ref(new Date().getFullYear());
+
+    const router = useRouter();
+
+    const voltarParaHome = () => {
+      router.push('/')
+    }
 </script>
 
 <template>
@@ -13,7 +20,7 @@
       <h1 style="color: white; margin: 0;">Horizonte</h1>
     </a-layout-header>
 
-    <a-layout-content :style="{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '60px' }">
+    <a-layout-content :style="{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '60px', background: 'linear-gradient(180deg, #a04000, #f4d03f)' }">
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
         <div class="container-intro">
 
@@ -33,18 +40,23 @@
                 <li>Vistas Explodidas</li>
               </ul>
 
-              <p><strong>Gestão de Horas Trabalhadas</strong>: Para um controle preciso e eficiente do tempo dedicado a cada projeto. <br>
+              <p><strong>Gestão de Horas Trabalhadas</strong>: Para um controle preciso e eficiente do tempo dedicado a cada projeto pelos colaboradores. <br>
 
-              <strong>Vistas Explodidas</strong>: Para visualizações detalhadas e intuitivas, permitindo uma análise profunda e estratégica. </p>
+              <strong>Vistas Explodidas</strong>: Para visualizações detalhadas e intuitivas, permitindo uma análise profunda e estratégica dos equipamentos. </p>
 
-              <p>Mas o Horizonte não para por aí. Pensado para ser expansível, ele está preparado para abranger novas funcionalidades que se integrem perfeitamente ao ecossistema, sempre com o objetivo de simplificar processos, ampliar a visão estratégica e impulsionar resultados.
+              <p>Mas o Horizonte não para por aí. Pensado para ser expansível, ele está preparado para abranger novas funcionalidades que se integrem perfeitamente ao ecossistema, sempre com o objetivo de simplificar processos, ampliar a visão estratégica e impulsionar resultados.</p>
               <br><br>
-              <h1><strong>O futuro é amplo e o Horizonte está aqui para guiar você.</strong></h1></p>
+              <h1><strong>O futuro é amplo e o Horizonte está aqui para guiar você.</strong></h1>
+              <br>
+              <div style="display: flex; align-items: center; flex-direction: column;">
+                <a-button type="primary" @click="voltarParaHome">Voltar para Home</a-button>
+              </div>
+              
           </section>
         </div>
     </a-layout-content>
 
-    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '20px 0' }">
+    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
           <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>

@@ -2,6 +2,13 @@
     import { ref } from 'vue';
     import Login from './Login.vue';
     const currentYear = ref(new Date().getFullYear());
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter();
+
+    const navegarParaIntro = () =>{
+      router.push('/Intro');
+    }
 </script>
 
 <template>
@@ -14,12 +21,17 @@
       <h1 style="color: white; margin: 0;">Horizonte</h1>
     </a-layout-header>
 
-    <a-layout-content :style="{ display:'flex', justifyContent:'center', alignItems: 'center', marginTop: '60px', background: '#1c2833'}">
+    <a-layout-content :style="{ display:'flex', justifyContent:'center', alignItems: 'center', marginTop: '60px', background: 'linear-gradient(180deg, #a04000, #f4d03f)'}">
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
         <div class="content-wrapper">
-            <div class="horizon-container">
-                <img src="/logo-2.png" alt="Logo" style="height: 100px;" />    
-            </div>
+          <div class="horizon-container">
+              <a-popover placement="right">
+                <template #content>
+                  <p>Clique para saber mais sobre o Horizonte!</p>
+                </template>
+                <img src="/logo-2.png" alt="Logo" style="height: 100px;" @click="navegarParaIntro"/>
+              </a-popover>    
+          </div>
           <h1 class="welcome-title" style="margin-top: 10px;">Seja bem-vindo ao HORIZONTE!</h1>
           <div class="login-container">
             <Login/>
@@ -68,6 +80,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   /* Responsividade */

@@ -51,7 +51,7 @@
 
             <div class="calendar">
               <div :style="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
-                <a-calendar v-model:value="value" :fullscreen="false" @panelChange="onPanelChange" />
+                <a-calendar v-model:value="value" :fullscreen="false" />
               </div>
             </div>
 
@@ -71,7 +71,7 @@
     import { message } from 'ant-design-vue';
     import { useRouter } from 'vue-router';
     import { LogoutOutlined } from '@ant-design/icons-vue';
-    import { computed, onMounted, ref } from 'vue';
+    import { onMounted, ref } from 'vue';
     import { Dayjs } from 'dayjs';
 
     const router = useRouter();

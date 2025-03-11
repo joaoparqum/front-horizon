@@ -38,10 +38,8 @@ declare module 'vue' {
     FormCriaSolicitacao: typeof import('./src/components/FormCriaSolicitacao.vue')['default']
     FormCriaUsuario: typeof import('./src/components/FormCriaUsuario.vue')['default']
     FormCriaUsuarioVistas: typeof import('./src/components/FormCriaUsuarioVistas.vue')['default']
-    FormEdiraHoras: typeof import('./src/components/FormEdiraHoras.vue')['default']
     FormEditaHoras: typeof import('./src/components/FormEditaHoras.vue')['default']
     FormEditaSolicitacao: typeof import('./src/components/FormEditaSolicitacao.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     HomeScreen: typeof import('./src/components/HomeScreen.vue')['default']
     HomeSght: typeof import('./src/components/HomeSght.vue')['default']
@@ -61,7 +59,6 @@ declare module 'vue' {
     TelaDocumentos: typeof import('./src/components/TelaDocumentos.vue')['default']
     TelaHorasValidas: typeof import('./src/components/TelaHorasValidas.vue')['default']
     TelaSolicitacoes: typeof import('./src/components/TelaSolicitacoes.vue')['default']
-    TelaSolicitacoesUsuario: typeof import('./src/components/TelaSolicitacoesUsuario.vue')['default']
     TelaSolUser: typeof import('./src/components/TelaSolUser.vue')['default']
   }
 }

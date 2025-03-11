@@ -79,7 +79,6 @@
     const username = ref<string | null>(null);
     const currentYear = ref(new Date().getFullYear());
     const novasSolicitacoes = computed(() => store.state.novasSolicitacoes || []);
-    const formatDate = (date: string) => new Date(date).toLocaleString();
 
     onMounted(() => {
         username.value = localStorage.getItem('login');

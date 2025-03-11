@@ -43,15 +43,13 @@
     import { message } from 'ant-design-vue';
     import { useRouter } from 'vue-router';
     import { LogoutOutlined } from '@ant-design/icons-vue';
-    import { computed, onMounted, ref } from 'vue';
+    import { onMounted, ref } from 'vue';
     import TabelaSolicitacoesUsuario from './TabelaSolicitacoesUsuario.vue';
 
     const router = useRouter();
     const store = useStore();
     const username = ref<string | null>(null);
     const currentYear = ref(new Date().getFullYear());
-    const isAdmin = computed(() => localStorage.getItem('role') === 'admin');
-    const isUser = computed(() => localStorage.getItem('role') === 'user');
 
     onMounted(() => {
         username.value = localStorage.getItem('login');

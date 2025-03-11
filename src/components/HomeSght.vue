@@ -104,7 +104,7 @@
     import { useStore } from 'vuex';
     import { message } from 'ant-design-vue';
     import { useRouter } from 'vue-router';
-    import { ArrowLeftOutlined, LogoutOutlined, SwapLeftOutlined } from '@ant-design/icons-vue';
+    import { ArrowLeftOutlined, LogoutOutlined } from '@ant-design/icons-vue';
     import { computed, onMounted, ref } from 'vue';
     import { Dayjs } from 'dayjs';
 

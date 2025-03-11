@@ -32,6 +32,8 @@
             <h2 style="text-align: center;">Bem-vindo!</h2>
             <h1 style="text-align: center;">Selecione o sistema deseja acessar:</h1>
 
+            <a-button type="primary" @click="navegarTesteSght">tela teste do SGHT</a-button>
+
             <div class="tables-wrapper">
               <div 
                 class="table-container"
@@ -86,6 +88,10 @@
 
     const navegarParaTabelaVistas = () => {
       router.push('/TelaDocumentos');
+    }
+
+    const navegarTesteSght = () => {
+      router.push('/TelaSght')
     }
 
     const navegarParaSGHT = () => {

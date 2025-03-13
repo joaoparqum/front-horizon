@@ -127,21 +127,21 @@
         nomeVista: 'documento1.pdf',
         tipoVista: 'pdf',
         tamanhoVista: 2048, // Em bytes (2MB)
-        url: 'https://eppg.fgv.br/sites/default/files/teste.pdf',
+        url: 'https://wwfit.awsassets.panda.org/downloads/circolare_n_4_earth_hour_25_marzo_2017.pdf',
       },
       {
         id: '2',
         nomeVista: 'relatorio.pdf',
         tipoVista: 'pdf',
         tamanhoVista: 102400, // Em bytes (100MB)
-        url: 'https://eppg.fgv.br/sites/default/files/teste.pdf',
+        url: 'https://wwfit.awsassets.panda.org/downloads/circolare_n_4_earth_hour_25_marzo_2017.pdf',
       },
       {
         id: '3',
         nomeVista: 'planilha.pdf',
         tipoVista: 'pdf',
         tamanhoVista: 51200, // Em bytes (50MB)
-        url: 'https://eppg.fgv.br/sites/default/files/teste.pdf',
+        url: 'https://wwfit.awsassets.panda.org/downloads/circolare_n_4_earth_hour_25_marzo_2017.pdf',
       },
     ]);
   

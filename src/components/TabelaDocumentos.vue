@@ -121,32 +121,7 @@
       return role === 'admin_vistas' || role === 'admin';
     });
   
-    const mockData = ref([
-      {
-        id: '1',
-        nomeVista: 'documento1.pdf',
-        tipoVista: 'pdf',
-        tamanhoVista: 2048, // Em bytes (2MB)
-        url: 'https://wwfit.awsassets.panda.org/downloads/circolare_n_4_earth_hour_25_marzo_2017.pdf',
-      },
-      {
-        id: '2',
-        nomeVista: 'relatorio.pdf',
-        tipoVista: 'pdf',
-        tamanhoVista: 102400, // Em bytes (100MB)
-        url: 'https://wwfit.awsassets.panda.org/downloads/circolare_n_4_earth_hour_25_marzo_2017.pdf',
-      },
-      {
-        id: '3',
-        nomeVista: 'planilha.pdf',
-        tipoVista: 'pdf',
-        tamanhoVista: 51200, // Em bytes (50MB)
-        url: 'https://wwfit.awsassets.panda.org/downloads/circolare_n_4_earth_hour_25_marzo_2017.pdf',
-      },
-    ]);
-  
-    const data = computed(() => mockData.value);
-    //const data = computed(() => store.state.data);
+    const data = computed(() => store.state.data);
   
     onMounted(() => {
       store.dispatch('fetchData');
@@ -179,18 +154,8 @@
     };*/
   
     const loading = ref<Record<string, boolean>>({});
-
-    const visualizarDocumento = (documentId: string) => {
-      const doc = mockData.value.find(d => d.id === documentId);
-      if (doc) {
-        documentUrl.value = doc.url;
-        openVisualizerModal.value = true; // Abre o modal
-      } else {
-        console.error("Documento não encontrado!");
-      }
-    };
   
-    /*const visualizarDocumento = async (documentId: any) => {
+    const visualizarDocumento = async (documentId: any) => {
       try {
         loading.value = { ...loading.value, [documentId]: true };
 
@@ -207,7 +172,7 @@
       } finally {
         loading.value = { ...loading.value, [documentId]: false };
       }
-    };*/
+    };
   
     const deleteDocument = (id: string) => {
       store.dispatch('deleteData', id);

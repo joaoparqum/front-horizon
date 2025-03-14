@@ -32,8 +32,6 @@
             <h2 style="text-align: center;">Bem-vindo!</h2>
             <h1 style="text-align: center;">Selecione o sistema deseja acessar:</h1>
 
-            <a-button type="primary" @click="navegarTesteSght">tela teste do SGHT</a-button>
-
             <div class="tables-wrapper">
               <div 
                 class="table-container"
@@ -88,10 +86,6 @@
 
     const navegarParaTabelaVistas = () => {
       router.push('/TelaDocumentos');
-    }
-
-    const navegarTesteSght = () => {
-      router.push('/TelaSght')
     }
 
     const navegarParaSGHT = () => {
@@ -172,6 +166,20 @@
       .logout-button {
         font-size: 12px; /* Reduz o tamanho da fonte */
         padding: 5px 10px; /* Ajusta o espaçamento interno */
+      }
+
+      .tables-wrapper {
+        display: flex;
+        flex-direction: column; /* Centraliza os itens horizontalmente */
+        align-items: center; /* Centraliza os itens verticalmente */
+        gap: 60px; /* Espaço entre os quadrados */
+        height: 100%;
+      }
+
+      .table-container, .table-hr-container {
+        width: 200px;
+        height: 200px;
+        padding: 5px;
       }
     }
 

@@ -20,15 +20,9 @@
       <h1 style="color: white; margin: 0;">Horizonte</h1>
     </a-layout-header>
 
-    <a-layout-content :style="{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '60px', background: 'linear-gradient(180deg, #a04000, #f4d03f)' }">
+    <a-layout-content :style="{marginTop: '60px', background: 'linear-gradient(180deg, #a04000, #f4d03f)' }">
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
         <div class="container-intro">
-
-          <div class="sun-container">
-              <div class="sun"></div>
-              <a class="ray" onclick="alert('Vistas Explodidas - Para visualizações detalhadas e intuitivas, permitindo uma análise profunda e estratégica')">Vistas</a>
-              <a class="ray" onclick="alert('SGHT - Para um controle preciso e eficiente do tempo dedicado a cada projeto.')">SGHT</a>
-          </div>
 
           <section class="intro"> 
               <h1>O que é o Ecossistema Horizonte?</h1>
@@ -105,6 +99,40 @@
     .welcome-title {
       font-size: 1.25rem;
     }
+    .container-intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+      margin-top: 40px;
+    }
+
+    .intro {
+      width: 100px; 
+      padding: 90px;
+    }
+
+    .sun-container {
+      width: 150px;
+      height: 150px;
+    }
+
+    .sun {
+      width: 200px;
+      height: 200px;
+      left: 50%;
+    }
+
+    .ray {
+      width: 40px;
+      height: 40px;
+      font-size: 12px;
+    }
+
+    .ray:nth-child(1) { top: -15px; }
+    .ray:nth-child(2) { right: -40px; }
+    .ray:nth-child(3) { bottom: -60px; }
+    .ray:nth-child(4) { left: -10px; }
   }
 
   @media (max-width: 768px) {
@@ -118,14 +146,41 @@
       flex-direction: column;
       text-align: center;
     }
+
+    .container-intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 90px; 
+      margin-top: 40px;
+    }
+
+    .intro {
+      width: 110px;
+      padding: 10px;
+    }
+
+    .sun-container {
+      width: 120px;
+      height: 120px;
+    }
+
+    .sun {
+      width: 180px;
+      height: 180px;
+    }
+
+    .ray {
+      width: 35px;
+      height: 35px;
+      font-size: 10px;
+    }
   }
 
   .container-intro {
-    display: flex;
-    align-items: center;
-    gap: 100px; /* Espaço entre a section e o sol */
-    margin-left: 20%;
-    margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
   }
 
   .intro {
@@ -157,7 +212,7 @@
       border-radius: 50%;
       position: absolute;
       top: 50%;
-      left: 30%;
+      left: 20%;
       transform: translate(-50%, -50%);
       box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
   }
@@ -184,9 +239,9 @@
       transform: scale(1.2);
   }
  
-  .ray:nth-child(1) { top: -20px; left: 50%; transform: translateX(-50%); }
-  .ray:nth-child(2) { top: 20%; right: -60px; }
-  .ray:nth-child(3) { bottom: -100px; left: 50%; transform: translateX(-50%); }
+  .ray:nth-child(1) { top: -20px; left: 30%; transform: translateX(-50%); }
+  .ray:nth-child(2) { top: 20%; right: -10px; }
+  .ray:nth-child(3) { bottom: -70px; left: 50%; transform: translateX(-50%); }
   .ray:nth-child(4) { top: 20%; left: -10px; }
 
 </style>

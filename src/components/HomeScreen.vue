@@ -61,7 +61,7 @@
       <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
-          <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>
+          <h2 style="color: yellow; margin: 0;">| TI - Irecê ©{{ currentYear }}</h2>
         </div>
       </a-layout-footer>
 

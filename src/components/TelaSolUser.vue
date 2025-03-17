@@ -24,17 +24,19 @@
       <a-layout-content :style="{ padding: '0 20px', marginTop: '64px', background: '#212f3c' }">
         <a-breadcrumb :style="{ margin: '16px 0' }">
         </a-breadcrumb>
-        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', borderRadius: '15px' }">
+        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', borderRadius: '15px', marginBottom: '35px' }">
           <h1 style="text-align: center;">Tabela de Solicitações</h1>
             <TabelaSolicitacoesUsuario/>
         </div>
       </a-layout-content>
+
       <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
-          <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>
+          <h2 style="color: yellow; margin: 0;">| TI - Irecê ©{{ currentYear }}</h2>
         </div>
       </a-layout-footer>
+
     </a-layout>
   </template>
   

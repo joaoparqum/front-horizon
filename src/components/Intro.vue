@@ -27,7 +27,7 @@
           <section class="intro"> 
               <h1>O que é o Ecossistema Horizonte?</h1>
 
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O Horizonte é mais do que um sistema — é uma plataforma integrada que oferece uma visão ampla e clara dos seus processos, unindo ferramentas poderosas para otimizar a gestão de horas trabalhadas e visualizações detalhadas de projetos. Com uma abordagem inovadora, o Horizonte foi projetado para ser o ponto de partida de uma jornada rumo à eficiência e à produtividade. No momento, o Horizonte já conta com duas funcionalidades essenciais:<br></p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O <strong>Horizonte</strong> é mais do que um sistema — é uma plataforma integrada que oferece uma visão ampla e clara dos seus processos, unindo ferramentas poderosas para otimizar a gestão de horas trabalhadas e visualizações detalhadas de projetos. Com uma abordagem inovadora, o Horizonte foi projetado para ser o ponto de partida de uma jornada rumo à eficiência e à produtividade. No momento, o Horizonte já conta com duas funcionalidades essenciais:<br></p>
 
               <ul>
                 <li>Gestão de Horas Trabalhadas</li>
@@ -108,7 +108,7 @@
     }
 
     .intro {
-      width: 100px; 
+      width: 320px !important; 
       padding: 90px;
     }
 
@@ -156,7 +156,7 @@
     }
 
     .intro {
-      width: 110px;
+      width: 320px !important;
       padding: 10px;
     }
 

@@ -27,7 +27,7 @@
       <a-layout-content :style="{ padding: '0 50px', marginTop: '64px', background: '#212f3c'}">
         <a-breadcrumb :style="{ margin: '16px 0' }">
         </a-breadcrumb>
-        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', borderRadius: '15px'}">
+        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', borderRadius: '15px', marginBottom: '35px' }">
 
             <h2 style="text-align: center;">Bem-vindo!</h2>
             <h1 style="text-align: center;">Selecione o sistema deseja acessar:</h1>
@@ -57,12 +57,14 @@
 
         </div>
       </a-layout-content>
+      
       <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
           <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>
         </div>
       </a-layout-footer>
+
     </a-layout>
   </template>
   
@@ -172,14 +174,20 @@
         display: flex;
         flex-direction: column; /* Centraliza os itens horizontalmente */
         align-items: center; /* Centraliza os itens verticalmente */
-        gap: 60px; /* Espaço entre os quadrados */
+        gap: 5px !important; /* Espaço entre os quadrados */
         height: 100%;
       }
 
       .table-container, .table-hr-container {
-        width: 200px;
-        height: 200px;
-        padding: 5px;
+        width: 200px !important;
+        height: 200px !important;
+        padding: 5px !important;
+      }
+
+      .work-icon, .time-icon, .register-icon{
+        width: 80px !important;
+        height: auto; /* Mantém a proporção */
+        margin-bottom: 20px;
       }
     }
 

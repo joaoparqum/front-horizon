@@ -30,7 +30,13 @@
             html-type="submit" 
             :disabled="fileList.length === 0"
           >
+            <SendOutlined />
             Enviar Documentos
+          </a-button>
+          <a-divider type="vertical" />
+          <a-button type="primary" @click="navegarParaTabela">
+            <ArrowLeftOutlined />
+            Voltar para Tabela
           </a-button>
         </a-form-item>
       </a-form>
@@ -42,6 +48,7 @@
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';
     import { message } from 'ant-design-vue';
+    import { ArrowLeftOutlined, SendOutlined } from '@ant-design/icons-vue';
   
     const store = useStore();
     const router = useRouter();
@@ -52,7 +59,11 @@
       fileList.value = [...fileList.value, file]; // Adiciona o arquivo à lista
       return false; // Impede o upload automático
     };
-  
+
+    const navegarParaTabela = () => {
+      router.push('/TelaDocumentos');
+    }
+   
     // Função para remover arquivos da lista
     const handleRemove = (file: File) => {
       const index = fileList.value.indexOf(file);

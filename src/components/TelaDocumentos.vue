@@ -6,7 +6,7 @@
       >
         <div style="display: flex; align-items: center;">
           <img src="/casa-logo-Photoroom.png" alt="Logo" style="margin-right: 10px; height: 50px;" /> 
-          <h1 class="header-title">Vistas Explodidas | Horizonte</h1>
+          <h1 class="header-title">| Vistas</h1>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
           <p class="header-greeting">Olá, {{ username }}!</p>
@@ -24,11 +24,12 @@
       <a-layout-content :style="{ padding: '0 50px', marginTop: '64px', background: '#212f3c' }">
         <a-breadcrumb :style="{ margin: '16px 0' }">
         </a-breadcrumb>
-        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', borderRadius: '15px' }">
+        <div :style="{ background: '#fff', padding: '24px', minHeight: '790px', borderRadius: '15px', marginBottom: '35px' }">
           <h1 style="text-align: center; margin-bottom: 20px;">Tabela de Vistas Explodidas</h1>
           <TabelaDocumentos/>
         </div>
       </a-layout-content>
+
       <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">

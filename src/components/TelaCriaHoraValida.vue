@@ -6,7 +6,7 @@
       >
         <div style="display: flex; align-items: center;">
           <img src="/casa-logo-Photoroom.png" alt="Logo" style="margin-right: 10px; height: 50px;"/> 
-          <h1 class="header-title">SGHT</h1>
+          <h1 class="header-title">| SGHT</h1>
         </div>  
         <div style="display: flex; align-items: center; gap: 10px;">
           <p class="header-greeting">Olá, {{ username }}!</p>
@@ -23,18 +23,20 @@
   
       <a-layout-content :style="{ display:'flex', justifyContent:'center', alignItems: 'center', marginTop: '50px', background: '#212f3c' }">
         
-        <div :style="{ background: '#fff', padding: '80px', minHeight: '460px', marginLeft: '100px', marginRight: '100px', minWidth: '370px', borderRadius: '15px'}">
+        <div :style="{ background: '#fff', padding: '80px', minHeight: '460px', marginLeft: '100px', marginRight: '100px', minWidth: '370px', borderRadius: '15px', marginTop: '35px', marginBottom: '35px'}">
           <h1 style="text-align: center;">Cadastro de Hora Válida</h1>
           
           <div class="form-container"><FormCriaHoraValida/></div>
         </div>
       </a-layout-content>
+
       <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
-          <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>
+          <h2 style="color: yellow; margin: 0;">| TI - Irecê ©{{ currentYear }}</h2>
         </div>
       </a-layout-footer>
+
     </a-layout>
   </template>
   

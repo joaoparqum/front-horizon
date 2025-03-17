@@ -25,7 +25,7 @@
       <h1 style="color: white; margin: 0;">Horizonte</h1>
     </a-layout-header>
 
-    <a-layout-content :style="{ display:'flex', justifyContent:'center', alignItems: 'center', marginTop: '60px', background: 'linear-gradient(180deg, #a04000, #f4d03f)'}">
+    <a-layout-content :style="{ display:'flex', justifyContent:'center', alignItems: 'center', marginTop: '60px', background: 'linear-gradient(180deg, #873600, #f4d03f)'}">
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
         <div class="content-wrapper">
           <div class="horizon-container">
@@ -45,7 +45,7 @@
         </div>
     </a-layout-content>
 
-    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
+    <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0', boxShadow: '0px -4px 10px rgba(0, 0, 0, 0.3)'  }">
       <div style="display: flex; align-items: center; justify-content: center;">
         <img src="/footer-image.png" alt="" style="height: 60px;">
         <h2 style="color: yellow; margin: 0;">| Irecê ©{{ currentYear }}</h2>

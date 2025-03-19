@@ -14,11 +14,9 @@
           name="data"
           :rules="[{ required: true, message: 'Insira a data!' }]"
         >
-          <a-date-picker
+          <a-date-picker 
             v-model:value="formState.data"
-            format="YYYY-MM-DDTHH:mm:ss"
-            show-time
-            style="width: 100%;"
+            format="YYYY-MM-DDTHH:mm:ss" 
           />
         </a-form-item>
   

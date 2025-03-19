@@ -70,7 +70,7 @@ const store = createStore({
       { username, password }: { username: string; password: string }) 
     {
       try {
-        const response = await axios.post('http://localhost:8080/horizonte/auth/login', {
+        const response = await axios.post('http://24.144.93.247/api/horizonte/auth/login', {
           login: username,
           password: password,
         });
@@ -110,7 +110,7 @@ const store = createStore({
       userData: any) 
     {
       try {
-        const response = await axios.post('http://localhost:8080/horizonte/auth/register', userData);
+        const response = await axios.post('http://24.144.93.247/api/horizonte/auth/register', userData);
         console.log('Usuário cadastrado com sucesso:', response.data);
         message.success('Usuário cadastrado com sucesso!');
         commit('setUser', userData);
@@ -121,7 +121,7 @@ const store = createStore({
     },
     async fetchData({ commit }: { commit: (mutation: string, payload?: any) => void }) {
       try {
-        const response = await axios.get('http://localhost:8080/horizonte/vistas');
+        const response = await axios.get('http://24.144.93.247/api/horizonte/vistas');
         commit('setData', response.data);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
@@ -151,7 +151,7 @@ const store = createStore({
       { DocumentCode, nomeArquivo }: { DocumentCode: string; nomeArquivo: string }
     ) {
       try {
-        const response = await axios.get(`http://localhost:8080/horizonte/vistas/download/${DocumentCode}`, {
+        const response = await axios.get(`http://24.144.93.247/api/horizonte/vistas/download/${DocumentCode}`, {
           responseType: 'blob',
         });
         const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -168,7 +168,7 @@ const store = createStore({
     },
     async searchDocumentByName({ commit }: { commit: (mutation: string, payload?: any) => void }, nomeVista: string) {
       try {
-        const response = await axios.get(`http://localhost:8080/horizonte/vistas/nomeVista/${nomeVista}`);
+        const response = await axios.get(`http://24.144.93.247/api/horizonte/vistas/nomeVista/${nomeVista}`);
         commit('setData', response.data);
       } catch (error) {
         console.log("Erro ao buscar documento pelo nome!");
@@ -179,7 +179,7 @@ const store = createStore({
       { DocumentCode }: { DocumentCode: string})
     {
       try {
-        const response = await axios.get(`http://localhost:8080/horizonte/vistas/view/${DocumentCode}`, {
+        const response = await axios.get(`http://24.144.93.247/api/horizonte/vistas/view/${DocumentCode}`, {
           responseType: 'blob', // Certifique-se de receber como blob
         });
     
@@ -199,7 +199,7 @@ const store = createStore({
       id: string) 
     {
       try {
-        await axios.delete(`http://localhost:8080/horizonte/vistas/delete/${id}`, {
+        await axios.delete(`http://24.144.93.247/api/horizonte/vistas/delete/${id}`, {
           headers: {
             'Authorization': `Bearer ${state.token}`,
           },
@@ -224,7 +224,7 @@ const store = createStore({
         });
     
         const token = localStorage.getItem('token');
-        await axios.post('http://localhost:8080/horizonte/vistas/upload', formData, {
+        await axios.post('http://24.144.93.247/api/horizonte/vistas/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`
@@ -241,7 +241,7 @@ const store = createStore({
     async fetchSolicitacoes({ commit }: { state: State; commit: (mutation: string, payload?: any) => void }) {
       try {
           const token = localStorage.getItem('token');
-          const response = await axios.get('http://localhost:8080/horizonte/solicitacoes', {
+          const response = await axios.get('http://24.144.93.247/api/horizonte/solicitacoes', {
               headers: {
                   Authorization: `Bearer ${token}`,
               },
@@ -255,7 +255,7 @@ const store = createStore({
     async fetchSolicitacoesByUser({ commit }: { state: State; commit: (mutation: string, payload?: any) => void }) {
       try {
           const token = localStorage.getItem('token');
-          const response = await axios.get('http://localhost:8080/horizonte/solicitacoes/user', {
+          const response = await axios.get('http://24.144.93.247/api/horizonte/solicitacoes/user', {
               headers: {
                   Authorization: `Bearer ${token}`,
               },
@@ -270,7 +270,7 @@ const store = createStore({
     id: string) {
       try {
           const token = localStorage.getItem('token');
-          await axios.delete(`http://localhost:8080/horizonte/solicitacoes/${id}`, {
+          await axios.delete(`http://24.144.93.247/api/horizonte/solicitacoes/${id}`, {
               headers: {
                   'Authorization': `Bearer ${token}`,
               },
@@ -297,7 +297,7 @@ const store = createStore({
         console.log(formData.get('comprovante'));  
 
         // Envia a solicitação com FormData
-        await axios.post(`http://localhost:8080/horizonte/solicitacoes`, formData,
+        await axios.post(`http://24.144.93.247/api/horizonte/solicitacoes`, formData,
           {
             headers: {
               'Authorization': `Bearer ${token}`, // Inclui o token no cabeçalho
@@ -317,7 +317,7 @@ const store = createStore({
     }) {
           try{
               const token = localStorage.getItem('token');
-              await axios.post(`http://localhost:8080/horizonte/horas`, 
+              await axios.post(`http://24.144.93.247/api/horizonte/horas`, 
               {
                   nomeColaborador: horas.nomeColaborador,
                   filial: horas.filial,
@@ -352,7 +352,7 @@ const store = createStore({
     async fetchHoras ({ commit }: { state: State; commit: (mutation: string, payload?: any) => void }) {
       try{
           const token = localStorage.getItem('token');
-          const response = await axios.get(`http://localhost:8080/horizonte/horas`, {
+          const response = await axios.get(`http://24.144.93.247/api/horizonte/horas`, {
               headers: {
                   'Authorization': `Bearer ${token}`
               }
@@ -368,7 +368,7 @@ const store = createStore({
     {
         try{
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:8080/horizonte/horas/${id}`, {
+            await axios.delete(`http://24.144.93.247/api/horizonte/horas/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -384,7 +384,7 @@ const store = createStore({
     {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8080/horizonte/horas/nome/${nomeColaborador}`, {
+        const response = await axios.get(`http://24.144.93.247/api/horizonte/horas/nome/${nomeColaborador}`, {
           headers: {
               'Authorization': `Bearer ${token}`
           }
@@ -400,7 +400,7 @@ const store = createStore({
     {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8080/horizonte/solicitacoes/nome/${login}`, {
+        const response = await axios.get(`http://24.144.93.247/api/horizonte/solicitacoes/nome/${login}`, {
           headers: {
               Authorization: `Bearer ${token}`
           }
@@ -416,7 +416,7 @@ const store = createStore({
     {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:8080/horizonte/solicitacoes/motivo/${motivo}`, {
+        const response = await axios.get(`http://24.144.93.247/api/horizonte/solicitacoes/motivo/${motivo}`, {
           headers: {
               Authorization: `Bearer ${token}`
           }
@@ -433,7 +433,7 @@ const store = createStore({
       try {
           const token = localStorage.getItem('token');
           await axios.patch(
-              `http://localhost:8080/horizonte/solicitacoes/${id}/status`, null, 
+              `http://24.144.93.247/api/horizonte/solicitacoes/${id}/status`, null, 
               {
                   headers: {
                       'Authorization': `Bearer ${token}`,
@@ -450,7 +450,7 @@ const store = createStore({
     },
     async fetchNovasSolicitacoes({ commit }: any) {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/horizonte/solicitacoes/nao-vistas', {
+      const response = await axios.get('http://24.144.93.247/api/horizonte/solicitacoes/nao-vistas', {
           headers: { 'Authorization': `Bearer ${token}` },
       });
       commit('setNovasSolicitacoes', response.data);
@@ -458,7 +458,7 @@ const store = createStore({
     async marcarNotificacoesComoVistas({ dispatch }: any) {
       try {
           const token = localStorage.getItem('token');
-          await axios.put('http://localhost:8080/horizonte/solicitacoes/marcar-vistas', {}, {
+          await axios.put('http://24.144.93.247/api/horizonte/solicitacoes/marcar-vistas', {}, {
               headers: { 'Authorization': `Bearer ${token}` },
           });
           // Atualiza a lista de notificações após marcar como vistas
@@ -475,7 +475,7 @@ const store = createStore({
                     throw new Error('Token não encontrado. Faça login novamente.');
                 }
 
-                await axios.patch(`http://localhost:8080/horizonte/solicitacoes/${payload.id}`, payload.updatedData, {
+                await axios.patch(`http://24.144.93.247/api/horizonte/solicitacoes/${payload.id}`, payload.updatedData, {
                     headers: { Authorization: `Bearer ${token}`},
                 });
                 dispatch('fetchSolicitacoesByUser');
@@ -493,7 +493,7 @@ const store = createStore({
                     throw new Error('Token não encontrado. Faça login novamente.');
                 }
             
-                await axios.patch(`http://localhost:8080/horizonte/horas/${payload.id}`, payload.updatedData,{
+                await axios.patch(`http://24.144.93.247/api/horizonte/horas/${payload.id}`, payload.updatedData,{
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 
@@ -508,7 +508,7 @@ const store = createStore({
         payload: any) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:8080/horizonte/solicitacoes/${payload.id}`, {
+                const response = await axios.get(`http://24.144.93.247/api/horizonte/solicitacoes/${payload.id}`, {
                     headers: { 'Authorization': `Bearer ${token}` },
                 });
                 return response.data;
@@ -526,7 +526,7 @@ const store = createStore({
                 throw new Error('Token não encontrado. Faça login novamente.');
               }
           
-              const response = await axios.get(`http://localhost:8080/horizonte/horas/${payload.id}`, {
+              const response = await axios.get(`http://24.144.93.247/api/horizonte/horas/${payload.id}`, {
                 headers: { Authorization: `Bearer ${token}` }  // Corrigido "Authorizarion" para "Authorization"
               });
           
@@ -542,7 +542,7 @@ const store = createStore({
       {
         try {
           const token = localStorage.getItem('token');  
-          const response = await axios.get(`http://localhost:8080/horizonte/comprovantes/view/${DocumentCode}`, {
+          const response = await axios.get(`http://24.144.93.247/api/horizonte/comprovantes/view/${DocumentCode}`, {
             responseType: 'blob', 
             headers: { 
                 Authorization: `Bearer ${token}`

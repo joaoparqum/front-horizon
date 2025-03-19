@@ -6,7 +6,7 @@
       >
         <div style="display: flex; align-items: center;">
           <img src="/casa-logo-Photoroom.png" alt="Logo" style="margin-right: 10px; height: 50px;" /> 
-          <h1 class="header-title"> | SGHT</h1>
+          <h1 class="header-title">| SGHT</h1>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
           <p class="header-greeting">Olá, {{ username }}!</p>

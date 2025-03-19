@@ -11,7 +11,7 @@
     }
 
     const navegarSght = () => {
-       router.push('/HomeScreen');
+       router.push('/CriaSolicitacao');
      }
 </script>
 

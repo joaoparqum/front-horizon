@@ -6,7 +6,7 @@
       >
         <div style="display: flex; align-items: center;">
           <img src="/casa-logo-Photoroom.png" alt="Logo" style="margin-right: 10px; height: 50px;" /> 
-          <h1 class="header-title">SGHT | Horizonte</h1>
+          <h1 class="header-title">| SGHT</h1>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
 
@@ -94,7 +94,7 @@
       <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
-          <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>
+          <h2 style="color: yellow; margin: 0;">| TI - Irecê ©{{ currentYear }}</h2>
         </div>
       </a-layout-footer>
     </a-layout>

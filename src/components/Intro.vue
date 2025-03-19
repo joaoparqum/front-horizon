@@ -24,7 +24,10 @@
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
         <div class="container-intro">
 
+          <img src="/sol_2-Photoroom.png">
+
           <section class="intro"> 
+
               <h1>O que é o Ecossistema Horizonte?</h1>
 
               <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O <strong>Horizonte</strong> é mais do que um sistema — é uma plataforma integrada que oferece uma visão ampla e clara dos seus processos, unindo ferramentas poderosas para otimizar a gestão de horas trabalhadas e visualizações detalhadas de projetos. Com uma abordagem inovadora, o Horizonte foi projetado para ser o ponto de partida de uma jornada rumo à eficiência e à produtividade. No momento, o Horizonte já conta com duas funcionalidades essenciais:<br></p>
@@ -53,7 +56,7 @@
     <a-layout-footer :style="{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', background: '#0404cf', padding: '8px 0' }">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="/footer-image.png" alt="" style="height: 60px;">
-          <h2 style="color: yellow; margin: 0;">| Setor de TI - Irecê ©{{ currentYear }}</h2>
+          <h2 style="color: yellow; margin: 0;">| TI - Irecê ©{{ currentYear }}</h2>
         </div>
       </a-layout-footer>
   </a-layout>
@@ -181,6 +184,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-bottom: 40px;
   }
 
   .intro {

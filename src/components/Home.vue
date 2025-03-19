@@ -9,10 +9,6 @@
     const navegarParaIntro = () =>{
       router.push('/Intro');
     }
-
-    const navegarSght = () => {
-       router.push('/CriaSolicitacao');
-     }
 </script>
 
 <template>
@@ -39,8 +35,6 @@
           <h1 class="welcome-title" style="margin-top: 10px;">Seja bem-vindo ao HORIZONTE!</h1>
           <div class="login-container">
             <Login/>
-
-            <a-button type="primary" @click="navegarSght">tela shgt</a-button>
           </div>
         </div>
     </a-layout-content>
